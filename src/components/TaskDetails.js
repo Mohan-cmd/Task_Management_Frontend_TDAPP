@@ -50,6 +50,7 @@ const TaskDetails =(props)=>{
                }
                {resData.inprogress=='true'&&resData.completed=='true'&&resData.approved=='true'&&
                <button className='button-style' onClick={()=>changeToCompleted()}>Change to Approved</button>
+               
                }
               </div>
         </div>      
