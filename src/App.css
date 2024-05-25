@@ -34,6 +34,33 @@
   margin: 5px;
   text-decoration:none;
   color: black;
+  cursor: pointer;
+}
+
+.button-style-manager{
+  border-style:solid;
+  border-width:1px;
+  border-color:rgb(93, 79, 202);
+  padding:10px;
+  border-radius:10px;
+  background-color: transparent;
+  margin: 5px;
+  text-decoration:none;
+  color: black;
+  cursor: pointer;
+}
+
+.button-style-emp{
+  border-style:solid;
+  border-width:2px;
+  border-color:rgb(246, 255, 0);
+  padding:10px;
+  border-radius:10px;
+  background-color: transparent;
+  margin: 5px;
+  text-decoration:none;
+  color: black;
+  cursor: pointer;
 }
 
 .App-link {

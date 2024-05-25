@@ -5,7 +5,8 @@ import Popup from 'reactjs-popup';
 import TaskDetails from './TaskDetails';
 const ethers= require('ethers');
 let values=[];
-const MyTasks =()=>{
+
+const VerifyApproveTask =()=>{
     const[taskData,setTaskData]=useState([]);
     const[inprogressTasks,setInProgressTasks]=useState([]);
     const[completedTasks,setCompletedTasks] =useState([]);
@@ -16,7 +17,7 @@ const MyTasks =()=>{
         const signer = await provider.getSigner();
 
         const contract = await new ethers.Contract(taskContractAddress,abi.abi,signer);
-        let teamData = await contract.getEmployeesTasks(signer);
+        let teamData = await contract.getManagerTasks(signer);
         console.log(teamData);
         const dataArray = [];
         teamData=teamData.toString();
@@ -45,9 +46,9 @@ const MyTasks =()=>{
          <div>
             <div style={{flex:'1',padding:'20px',borderLeft:'1px solid black',borderRight:'1px solid black',marginLeft:'10px'}}>
             
-            <div style={{marginBottom:'10px'}}>Tasks Assigned</div>
+            <div style={{marginBottom:'10px'}}>Tasks Required Verification</div>
             {taskData.map((data,key)=> 
-                    data.inprogress=='false'&&
+                    data.completed=='true' && data.verified=='false' &&
                     <div onClick={(e)=>SelectedTask(e)}>
                        
                         <Popup trigger= {
@@ -88,9 +89,9 @@ const MyTasks =()=>{
          
             <div style={{flex:'1',padding:'20px',borderRight:'1px solid black',marginLeft:'10px'}}>
             
-            <div style={{marginBottom:'10px'}}>Tasks In-Progress</div>
+            <div style={{marginBottom:'10px'}}>Tasks Required Approval</div>
             {taskData.map((data,key)=> 
-                    data.inprogress=='true'&&data.completed=='false'&&
+                    data.verified=='true'&&data.approved=='false'&&
                     <div onClick={(e)=>SelectedTask(e)}>
                        
                         <Popup trigger= {
@@ -125,9 +126,9 @@ const MyTasks =()=>{
             </div>
             <div style={{flex:'1',padding:'20px',borderRight:'1px solid black',marginLeft:'0px'}}>
             
-            <div style={{marginBottom:'10px'}}>Tasks Completed</div>
+            <div style={{marginBottom:'10px'}}>Tasks Approved & Processed</div>
             {taskData.map((data,key)=> 
-                    data.inprogress=='true'&&data.completed=='true'&&data.verified=='false'&&
+                    data.verified=='true' && data.approved=='true'&&
                     <div onClick={(e)=>SelectedTask(e)}>
                        
                         <Popup trigger= {
@@ -172,8 +173,8 @@ const createTaskObj = (startIndex)=>{
         taskId: values[startIndex],
         title: values[startIndex + 1],
         description: values[startIndex + 2],
-        assignedEmployee: values[startIndex + 3],
-        assignedBy: values[startIndex + 4],
+        assignedBy: values[startIndex + 3],
+        assignedEmployee: values[startIndex + 4],
         complexity: values[startIndex + 5],
         deadline: values[startIndex + 6],
         tokens: values[startIndex + 7],
@@ -184,6 +185,4 @@ const createTaskObj = (startIndex)=>{
     }
 }
 
-
-
-export default MyTasks;
+export default VerifyApproveTask

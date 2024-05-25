@@ -20,6 +20,9 @@ import CreateTask from './components/CreateTask';
 import ViewTasks from './components/ViewTasks';
 import MyTeam from './components/MyTeam';
 import MyTasks from './components/MyTask';
+import VerifyApproveTask from './components/VerifyApproveTask';
+import RedeemTokens from './components/RedeemTokens';
+import ApprovedProccessed from './components/ApprovedProcessed';
 
 const {ethers} = require('ethers');
 
@@ -75,6 +78,18 @@ const appRouter =createBrowserRouter([
       {
         path:'mytasks',
         element:<MyTasks/>
+      },
+      {
+        path:'verifyapprove',
+        element:<VerifyApproveTask/>
+      },
+      {
+        path:'redeemtokens',
+        element:<RedeemTokens/>
+      },
+      {
+        path:'tasksapprovedprocessed',
+        element:<ApprovedProccessed/>
       }
     ]
   }

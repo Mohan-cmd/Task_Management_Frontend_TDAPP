@@ -40,7 +40,7 @@ const CreateTask =()=>{
            tx.wait();
             console.log(JSON.stringify(tx));
             console.log('transaction hash of Create task is : '+tx.hash);
-
+            alert('Task Created Successfully');
        }
     }
     catch(error){
