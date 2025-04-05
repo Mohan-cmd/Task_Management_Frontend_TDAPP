@@ -1,32 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AdminAccount } from "./constants";
-const userSlice= createSlice({
-    name: 'user',
-    initialState:{
-        userAccount:'',
-        isAdmin:false,
-        isManager:false,
-        managers:[],
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    userAccount: '',
+    isAdmin: false,
+    isManager: false,
+    managers: [],
+  },
+  reducers: {
+    addManagers: (state, action) => {
+      state.managers = action.payload;
     },
-    reducers:{
-        addManagers:(state,action)=>{
-          //  console.log('man:'+action.payload)
-            state.managers.push(action.payload)
-        },
-        addUser:(state,action)=>{
-            state.userAccount=action.payload;
-          
-            if(AdminAccount===state.userAccount){
-                state.isAdmin=true;
-            }else if(state.managers[0].includes(action.payload)){
-                
-                state.isManager=true;
-            }
-        }
-        
-    }
+    addUser: (state, action) => {
+      const userAddress = action.payload.toLowerCase();
+      state.userAccount = userAddress;
+      
+      state.isAdmin = userAddress === AdminAccount.toLowerCase();
+      state.isManager = state.managers.some(
+        (manager) => manager.toLowerCase() === userAddress
+      );
+    },
+  },
+});
 
-})
-
-export const {addUser,addManagers}= userSlice.actions;
+export const { addUser, addManagers } = userSlice.actions;
 export default userSlice.reducer;
