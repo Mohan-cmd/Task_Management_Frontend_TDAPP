@@ -40,6 +40,26 @@ const CreateTask =()=>{
            tx.wait();
             console.log(JSON.stringify(tx));
             console.log('transaction hash of Create task is : '+tx.hash);
+            const res = await fetch('http://localhost:5000/api/tasks/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  title: e.target[0].value,
+                  description: e.target[1].value,
+                  assignedBy: signedInUser,
+                  assignedTo: selectedEmp,
+                  complexity: parseInt(e.target[3].value),
+                  deadline: e.target[4].value,
+                  tokens: parseInt(e.target[5].value),
+                  transactionHash: tx.hash
+                })
+              });
+              
+              if (res.ok) {
+                const dbRes = await res.json();
+                console.log("Saved to DB:", dbRes);
+              }
+              
             alert('Task Created Successfully');
        }
     }

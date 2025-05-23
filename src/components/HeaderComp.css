@@ -1,0 +1,45 @@
+.header-wrapper {
+    padding: 12px;
+    background-color: white;
+    border: 2px lightcoral;
+  }
+  
+  .dashboard-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .nav-btn {
+    padding: 8px 14px;
+    background-color: white;
+    color: #333;
+    border: 2px solid coral;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .nav-btn:hover {
+    background-color: #e7f1ff;
+    border-color: #ff4000;
+    color: coral;
+  }
+  
+  .nav-btn.active {
+    background-color: coral;
+    color: white;
+    border-color: coral;
+  }
+  

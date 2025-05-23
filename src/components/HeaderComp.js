@@ -1,61 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
-const HeaderComp=()=>{
+import "./HeaderComp.css"; // Import external CSS
+
+const HeaderComp = () => {
   const accountData = useSelector(store => store.user.userAccount);
   const isAdmin = useSelector(store => store.user.isAdmin);
   const isManager = useSelector(store => store.user.isManager);
-  //  console.log('hurry got account :'+accountData)
-  //  console.log('is Admin: '+isAdmin);
-  //  console.log('is Manager: '+isManager);
-    // const [bgColor,setBgColor]=  useState(
-    //   {
-    //     // home:'white',
-    //     // register:'white',
-    //     // viewEmployees: 'white',
-    //     // addnewMgr: 'white',
-    //     // viewMgrs: 'white',
-    //     // createTeams : 'white',
-    //     // viewTeams : 'white',
-    //     // createTask : 'white',
-    //     // viewTask : 'white',
-    //     // myTeam :'white',
-    //     // verifyApprove :'white',
-    //     // myTasks :'white',
-    //     // tasksApprovedProcessed :'white',
-    //     // redeemTokens : 'white'
-    // //   }
-    // )
-    const [selectedButton,setSelectedButton] = useState('');
+  const [selectedButton, setSelectedButton] = useState("");
 
-    const handleClick= (buttonName)=>{
-     setSelectedButton(buttonName);
-    }
-  return(
+  const handleClick = (buttonName) => {
+    setSelectedButton(buttonName);
+  };
+
+  return (
     <div>
-    {isAdmin && <div style={{fontWeight:'bold',fontSize:'27px'}}>Admin Dashboard</div>}
-    {isManager && <div style={{fontWeight:'bold',fontSize:'27px',color:"coral"}}>Manager Dashboard</div>}
-    {!isManager && !isAdmin && <div style={{fontWeight:'bold',fontSize:'27px'}}>Employee Dashboard</div>}
-    <div className="App-header">
-    {<Link to='/' className="button-style" style={{backgroundColor: selectedButton==='home' ? 'coral': 'white'}} onClick={()=> handleClick('home')}> Home</Link>}
-    {isAdmin&&<Link to="/register" className="button-style" style={{backgroundColor: selectedButton === 'register' ? 'coral':'white'}} onClick={()=>handleClick('register')}>Register</Link>}
-    {isAdmin&&<Link to="/viewemployees" className="button-style" style={{backgroundColor: selectedButton === 'viewEmployees' ? 'coral':'white'}} onClick={()=>handleClick('viewEmployees')}>View Employees</Link>}
-    {isAdmin&&<Link to="/addnewmgr" className="button-style" style={{backgroundColor: selectedButton === 'addNewMgr' ? 'coral':'white'}} onClick={()=>handleClick('addNewMgr')}>Add New Manager</Link>}
-    {isAdmin&&<Link to="/viewmgrs" className="button-style" style={{backgroundColor: selectedButton === 'viewMgrsData' ? 'coral':'white'}} onClick={()=>handleClick('viewMgrsData')}>View Managers Data</Link>}
-    {isAdmin&&<Link to="/createteams" className="button-style" style={{backgroundColor: selectedButton === 'createTeams' ? 'coral':'white'}} onClick={()=>handleClick('createTeams')}>Create Teams</Link>}
-    {isAdmin&&<Link to="/viewteams" className="button-style" style={{backgroundColor: selectedButton === 'viewTeams' ? 'coral':'white'}} onClick={()=>handleClick('viewTeams')}>View Teams</Link>}
-    {isManager&&<Link to="/createtask" className="button-style" style={{backgroundColor: selectedButton === 'createTask' ? 'coral':'white'}} onClick={()=>handleClick('createTask')}>CreateTask</Link>}
-    {isManager&&<Link to="/viewtasks" className="button-style" style={{backgroundColor: selectedButton === 'viewTasks' ? 'coral':'white'}} onClick={()=>handleClick('viewTasks')}>View Tasks</Link>}
-    {isManager&&<Link to="/myteam" className="button-style" style={{backgroundColor: selectedButton === 'myTeam' ? 'coral':'white'}} onClick={()=>handleClick('myTeam')}>My Team</Link>}
-    {isManager&&<Link to="/verifyapprove" className="button-style" style={{backgroundColor: selectedButton === 'verifyandApprove' ? 'coral':'white'}} onClick={()=>handleClick('verifyandApprove')}>Verify & Approve Tasks</Link>}
-    {(!isAdmin && !isManager)&& <Link to="/mytasks" className="button-style" style={{backgroundColor: selectedButton === 'myTasks' ? 'coral':'white'}} onClick={()=>handleClick('myTasks')}>My Tasks</Link>}
-    {/* {(!isAdmin && !isManager)&& <Link to="/taskpendingppproval" className="button-style">Tasks Pending Approval</Link>} */}
-    {(!isAdmin && !isManager)&& <Link to="/tasksapprovedprocessed" className="button-style" style={{backgroundColor: selectedButton === 'tasksAppProce' ? 'coral':'white'}} onClick={()=>handleClick('tasksAppProce')}>Tasks Approved & Processed</Link>}
-    {(!isAdmin && !isManager)&& <Link to="/redeemtokens" className="button-style" style={{backgroundColor: selectedButton === 'redeemTokens' ? 'coral':'white'}} onClick={()=>handleClick('redeemTokens')}>Redeem Tokens</Link>}
+    <br></br>
+    <div className="dashboard-title">
+        {isAdmin && "Admin Dashboard"}
+        {isManager && "Manager Dashboard"}
+        {!isManager && !isAdmin && "Employee Dashboard"}
+      </div>
+    <div className="header-wrapper">
+      
+
+      <div className="nav-links">
+        <Link to="/" className={selectedButton === 'home' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('home')}>Home</Link>
+
+        {isAdmin && (
+          <>
+            <Link to="/register" className={selectedButton === 'register' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('register')}>Register</Link>
+            <Link to="/viewemployees" className={selectedButton === 'viewEmployees' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('viewEmployees')}>View Employees</Link>
+            <Link to="/addnewmgr" className={selectedButton === 'addNewMgr' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('addNewMgr')}>Add New Manager</Link>
+            <Link to="/viewmgrs" className={selectedButton === 'viewMgrsData' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('viewMgrsData')}>View Managers</Link>
+            <Link to="/createteams" className={selectedButton === 'createTeams' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('createTeams')}>Create Teams</Link>
+            <Link to="/viewteams" className={selectedButton === 'viewTeams' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('viewTeams')}>View Teams</Link>
+          </>
+        )}
+
+        {isManager && (
+          <>
+            <Link to="/createtask" className={selectedButton === 'createTask' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('createTask')}>Create Task</Link>
+            <Link to="/viewtasks" className={selectedButton === 'viewTasks' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('viewTasks')}>View Tasks</Link>
+            <Link to="/myteam" className={selectedButton === 'myTeam' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('myTeam')}>My Team</Link>
+            <Link to="/verifyapprove" className={selectedButton === 'verifyandApprove' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('verifyandApprove')}>Verify & Approve</Link>
+          </>
+        )}
+
+        {!isAdmin && !isManager && (
+          <>
+            <Link to="/mytasks" className={selectedButton === 'myTasks' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('myTasks')}>My Tasks</Link>
+            <Link to="/tasksapprovedprocessed" className={selectedButton === 'tasksAppProce' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('tasksAppProce')}>Approved & Processed</Link>
+            <Link to="/redeemtokens" className={selectedButton === 'redeemTokens' ? 'nav-btn active' : 'nav-btn'} onClick={() => handleClick('redeemTokens')}>Redeem Tokens</Link>
+          </>
+        )}
+      </div>
     </div>
     </div>
-  )
-}
+  );
+};
 
 export default HeaderComp;

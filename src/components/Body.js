@@ -45,9 +45,10 @@ const Body = () => {
 
   return (
     <div>
+    <br></br>
       <div style={{ fontWeight: 'bold' }}>
         {balanceOf !== null ? (
-          <>Balance Tokens ▶︎ : {balanceOf.toString()} TTK</>
+          <>Balance Tokens ▶︎ : {balanceOf.toString()} TTKK</>
         ) : (
           <>Loading balance...</>
         )}

@@ -62,8 +62,8 @@ function App() {
 
         const managers = await contract.getManagers();
 
-        dispatch(addManagers(managers)); // ✅ Dispatch managers first
-        dispatch(addUser(userAddress));   // ✅ Then check user role
+        dispatch(addManagers(managers)); 
+        dispatch(addUser(userAddress));  
 
         setIsLoggedIn(true);
         localStorage.setItem("dapp_logged_in", "true");

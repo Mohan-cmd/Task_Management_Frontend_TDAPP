@@ -1,7 +1,7 @@
 
-export const RPC_URl="https://skilled-soft-smoke.matic-amoy.quiknode.pro/958687e1f54ed1e8354d05506f19590618a04727/";
-export const tokenContractAddress= "0xA609bdF27DB2154f373Bc8f776eDe0131a3d7CC0";
-export const taskContractAddress= "0x0F55277b68eBFe02D1B57231597D0dcB0eEefC6E";
+export const RPC_URl="https://side-crimson-sun.ethereum-sepolia.quiknode.pro/02645e9c5f2a1bb42d6937d0648b30c1c95af5be/";
+export const tokenContractAddress= "0x861138203b11826531C719450d7A62244F4d170a";
+export const taskContractAddress= "0x1cE2DC1C08B92aAe6C0C5AA9C8a30A864eA6521F";
 export const prvk="e79f0aa02913d17e41d83b393534e0dd7ab24cd98851a51ec49ce57a04a3148b";
 
 
